@@ -5,8 +5,8 @@ class Solution(object):
         :rtype: int
         """
         l=0
-        charset=set()
         maxx=0
+        charset=set()
         for r in range(len(s)):
             while s[r] in charset:
                 charset.remove(s[l])
