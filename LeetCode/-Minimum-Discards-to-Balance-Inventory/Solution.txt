@@ -1,0 +1,25 @@
+from collections import Counter,deque
+class Solution(object):
+    def minArrivalsToDiscard(self, arrivals, w, m):
+        """
+        :type arrivals: List[int]
+        :type w: int
+        :type m: int
+        :rtype: int
+        """
+        window=deque()
+        freq=Counter()
+        discards=0
+        for day,item in enumerate(arrivals,1):
+            while window and window[0][1]<=day-w:
+                old_item,_=window.popleft()
+                freq[old_item]-=1
+                if freq[old_item]==0:
+                    del freq[old_item]
+            if freq[item]<m:
+                window.append((item,day))
+                freq[item]+=1
+            else:
+                discards+=1
+        return discards
+        
