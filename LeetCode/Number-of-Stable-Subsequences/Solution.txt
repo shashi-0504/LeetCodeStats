@@ -1,0 +1,18 @@
+class Solution(object):
+    def countStableSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD=10**9 +7
+        dp=[[0,0],[0,0]]
+        for x in nums:
+            p=x%2
+            ndp=[row[:] for row in dp]
+            ndp[0][p]=(ndp[0][p]+1)%MOD
+            ndp[0][p]=(ndp[0][p]+dp[0][1-p]+dp[1][1-p])%MOD
+            ndp[1][p]=(ndp[1][p]+dp[0][p])%MOD
+            dp=ndp
+        return (dp[0][0]+dp[0][1]+dp[1][0]+dp[1][1])%MOD
+            
+            
