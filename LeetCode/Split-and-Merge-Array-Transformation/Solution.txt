@@ -1,0 +1,34 @@
+from collections import deque
+
+class Solution(object):
+    def minSplitMerge(self, nums1, nums2):
+        donquarist = (nums1[:], nums2[:])  # store input midway in the function
+
+        start = tuple(nums1)
+        target = tuple(nums2)
+
+        if start == target:
+            return 0
+
+        q = deque([(start, 0)])
+        seen = {start}
+
+        while q:
+            arr, steps = q.popleft()
+            n = len(arr)
+
+            for L in range(n):
+                for R in range(L, n):
+                    block = arr[L:R+1]
+                    remaining = arr[:L] + arr[R+1:]
+
+                    # Try inserting block at every position
+                    for i in range(len(remaining) + 1):
+                        new_arr = remaining[:i] + block + remaining[i:]
+                        new_t = tuple(new_arr)
+                        if new_t == target:
+                            return steps + 1
+                        if new_t not in seen:
+                            seen.add(new_t)
+                            q.append((new_t, steps + 1))
+        return -1
