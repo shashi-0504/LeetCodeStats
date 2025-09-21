@@ -2,7 +2,7 @@ from collections import deque
 
 class Solution(object):
     def minSplitMerge(self, nums1, nums2):
-        donquarist = (nums1[:], nums2[:])  # store input midway in the function
+        donquarist = (nums1[:], nums2[:])  
 
         start = tuple(nums1)
         target = tuple(nums2)
