@@ -1,0 +1,30 @@
+class Solution(object):
+    def distinctPoints(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        n=len(s)
+        prefix=[(0,0)]
+        for move in s:
+            x,y=prefix[-1]
+            if move=='U':
+                y+=1
+            elif move=='D':
+                y-=1
+            elif move=='L':
+                x-=1
+            elif move=='R':
+                x+=1
+            prefix.append((x,y))
+        fp=set()
+        totx,toty=prefix[-1]
+        for i in range(n-k+1):
+            xr=prefix[i+k][0]-prefix[i][0]
+            yr=prefix[i+k][1]-prefix[i][1]
+            fx=totx-xr
+            fy=toty-yr
+            fp.add((fx,fy))
+        return len(fp)
+        
