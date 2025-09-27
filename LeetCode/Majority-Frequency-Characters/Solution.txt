@@ -1,0 +1,13 @@
+from collections import Counter,defaultdict
+class Solution(object):
+    def majorityFrequencyGroup(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        freq=Counter(s)
+        grps=defaultdict(list)
+        [grps[c].append(ch) for ch,c in freq.items()]
+        bestk,bestgrp=max(grps.items(),key=lambda x: (len(x[1]),x[0]))
+        return "".join(sorted(bestgrp))
+        
