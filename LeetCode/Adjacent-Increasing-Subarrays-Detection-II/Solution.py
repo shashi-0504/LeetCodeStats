@@ -1,0 +1,5 @@
+- `g[4] = 1` (Only element `5` is increasing by itself).
+- `g[3] = 2` (Subarray `[4, 5]` is increasing).
+- `g[2] = 3` (Subarray `[3, 4, 5]` is increasing).
+- `g[1] = 4` (Subarray `[2, 3, 4, 5]` is increasing).
+- `g[0] = 5` (Subarray `[1, 2, 3, 4, 5]` is increasing).
