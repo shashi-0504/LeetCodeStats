@@ -1,0 +1,17 @@
+from math import gcd
+from collections import defaultdict
+mod=10**9 +7
+class Solution:
+    def countCoprime(self, mat: List[List[int]]) -> int:
+        dp=defaultdict(int)
+        for v in mat[0]:
+            dp[v]+=1
+        for r in mat[1:]:
+            ndp=defaultdict(int)
+            for prevg,prevcnt in dp.items():
+                for v in r:
+                    ng=gcd(prevg,v)
+                    ndp[ng]=(ndp[ng]+prevcnt)%mod
+            dp=ndp
+        return dp[1] if 1 in dp else 0
+        
