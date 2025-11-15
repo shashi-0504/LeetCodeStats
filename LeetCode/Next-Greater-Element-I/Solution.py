@@ -1,23 +1,11 @@
-class Solution {
-public:
-    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> ans;
-        for(int i=0;i<nums1.size();i++){
-            int max=-1;
-            for(int j=0;j<nums2.size();j++){
-                int index=j;
-                if(nums1[i]==nums2[j]){ // Found element in nums2 that matches current element in nums1
-                     while(index!=nums2.size()){ // Iterate through remaining elements in nums2 to find next greater element
-                        if(nums2[index]>nums1[i]){
-                            max=nums2[index]; // Update max if we find a greater element
-                            break;
-                        }
-                        index++;
-                    }
-               }
-            }
-            ans.push_back(max);
-        }
-        return ans;
-    }
-};
+class Solution(object):
+    def nextGreaterElement(self, nums1, nums2):
+        map = {} # map for next greater element
+        stack = []
+        for num in nums2:
+            while stack and stack[-1] < num:
+                map[stack.pop()] = num
+            stack.append(num) 
+        for i in xrange(len(nums1)): 
+            nums1[i] = map.get(nums1[i], -1)
+        return nums1
