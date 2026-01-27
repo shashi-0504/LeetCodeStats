@@ -1,11 +1,11 @@
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        for i in range(len(matrix)):
-            for j in range(i+1,len(matrix)):
-                matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
-        for i in matrix:
-            i.reverse()
-        
+1class Solution:
+2    def rotate(self, matrix: List[List[int]]) -> None:
+3        """
+4        Do not return anything, modify matrix in-place instead.
+5        """
+6        for i in range(len(matrix)):
+7            for j in range(i+1,len(matrix)):
+8                matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
+9        for i in matrix:
+10            i.reverse()
+11        
